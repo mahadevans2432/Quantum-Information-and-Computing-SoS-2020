@@ -136,7 +136,7 @@ A method used for visualization of qubits is the Bloch sphere representation. Si
 Since $\alpha$ and $\beta$ are complex numbers it is possible to represent each qubit with three real numbers. An important point to understand here is that global phase change over a qubit doesn't affect it. 
 Hence the qubits $\alpha\ket{0} + \beta\ket{1}$ and $e^{\iota\theta}(\alpha\ket{0} + \beta\ket{1})$ are the same since there is no way to differentiate between them.\\
 $\ket{\psi} = \alpha\ket{0} + \beta\ket{1}$ with $|\alpha|^2 + |\beta|^2 = 1$ can be written as\\
-\begin{equation}\ket{\psi} = cos(\theta/2)\ket{0} + e^{\iota\phi}sin(\theta/2)\ket{1}\end{equation}
+\begin{equation}\ket{\psi} = \cos(\theta/2)\ket{0} + e^{\iota\phi}\sin(\theta/2)\ket{1}\end{equation}
 Note that since global phase is ignored we can assume $\alpha$ to take on real values.
 If we take a sphere centered at origin and assume $\ket{0}$ to represent $\ket{+z}$ and $\ket{1}$ to represent $\ket{-z}$ we get that the angle $\theta$ from eq 2.1 actually is the polar angle of the vector which connects the origin to the point which actually represents this qubit and the angle $\phi$ represents the azimuthal angle.\\
 Using this we get $\ket{+x} = \dfrac{\ket{0} + \ket{1}}{2}$ and $\ket{-x} = \dfrac{\ket{0} - \ket{1}}{2}$.
@@ -345,7 +345,7 @@ The Toffoli gate is a not controlled by two qubits. It can be constructed using 
     \caption{Toffoli gate construction}
     %\label{fig:my_label}
 \end{figure}\\
-If we are to make a $C^2(U)$ gate we can construct it using $CNOT$ and $V$ gates where $V^2 = U$ and $V$ is unitary. The ciruit would be something like this.
+If we are to make a $C^2(U)$ gate we can construct it using $CNOT$ and $V$ gates where $V^2 = U$ and $V$ is unitary. The ciruit would be something like this (refer fig. 3.4).
 \begin{figure}[ht]
     \centering
     \includegraphics[width = 0.6\textwidth]{images/unitary 2 control.png}
@@ -376,7 +376,7 @@ However an interesting thing about the fredkin gate is that it can be constructe
 \caption{Fredkin with 5 two qubit gates}
 \end{figure}
 The two $CNOTs$ in the right end commute and so we can combine the last $CNOT$ with the controlled $V^{\dagger}$ and similarly combine the first $CNOT$ and the controlled $V$. This yields us five two qubit gates.\\
-Say we want to construct a $C^5(U)$ gate we can do so in a simple method using ancillary or work qubits along with some toffoli gates\\.
+Say we want to construct a $C^5(U)$ gate we can do so in a simple method using ancillary or work qubits along with some toffoli gates.\\
 \begin{figure}[ht]
 \centering
 \includegraphics[width = 0.5\textwidth]{images/c5u.png}
@@ -399,7 +399,6 @@ Another thing about controlled gates is that when a certain control qubit has a 
 \end{figure}\\
 
 \subsection{Measurement in circuits and Quantum Teleportation}
-Measurement is represented in circuits like this.\\
 \begin{figure}[ht]
 \centering
 \includegraphics[width = 0.2\textwidth]{images/measurement.png}
@@ -473,14 +472,14 @@ Using triangle inequality we get
 This can be extended to any number of operations using induction.\\
 Consider the operations $T$ and $HTH$. $T$ gives a rotation about $Z$ axis by an angle of $pi/4$. $HTH$ gives a rotation about $X$ axis by an angle of $pi/4$. Combining these both we get
 \begin{equation}
-exp(-\iota\dfrac{\pi}{8}Z)exp(-\iota\dfrac{\pi}{8}X) = \Big[cos\left(\dfrac{\pi}{8}\right)I - {\iota}sin\left(\dfrac{\pi}{8}\right)Z\Big]\Big[cos\left(\dfrac{\pi}{8}\right)I - {\iota}sin\left(\dfrac{\pi}{8}\right)X\Big]
+\exp(-\iota\dfrac{\pi}{8}Z)\exp(-\iota\dfrac{\pi}{8}X) = \Big[\cos\left(\dfrac{\pi}{8}\right)I - {\iota}\sin\left(\dfrac{\pi}{8}\right)Z\Big]\Big[\cos\left(\dfrac{\pi}{8}\right)I - {\iota}\sin\left(\dfrac{\pi}{8}\right)X\Big]
 \end{equation}
 \begin{equation}
-exp(-\iota\dfrac{\pi}{8}Z)exp(-\iota\dfrac{\pi}{8}X) = {cos}^2\left(\dfrac{\pi}{8}\right)I - \iota\Big[cos\left(\dfrac{\pi}{8}\right)(X + Z) + sin\left(\dfrac{\pi}{8}\right)Y\Big]sin\left(\dfrac{\pi}{8}\right)
+\exp(-\iota\dfrac{\pi}{8}Z)\exp(-\iota\dfrac{\pi}{8}X) = {\cos}^2\left(\dfrac{\pi}{8}\right)I - \iota\Big[\cos\left(\dfrac{\pi}{8}\right)(X + Z) + \sin\left(\dfrac{\pi}{8}\right)Y\Big]\sin\left(\dfrac{\pi}{8}\right)
 \end{equation}
-As one can see this obtains us a rotation by an $\theta$  such that $cos\left(\dfrac{\theta}{2}\right) = {cos}^2\left(\dfrac{\pi}{8}\right)$ about the vector $\vec{n} = \left(cos\dfrac{\pi}{8},sin\dfrac{\pi}{8},cos\dfrac{\pi}{8}\right)$. We can see that this $\theta$ is an irrational multiple of $2\pi$. Hence suppose we wish to make $R_{\vec{n}}(\alpha)$ for some arbitrary $\alpha$ we can replicate to an arbitrary accuracy using repeated iteration $R_{\vec{n}}(\theta)$\\
+As one can see this obtains us a rotation by an $\theta$  such that $\cos\left(\dfrac{\theta}{2}\right) = {\cos}^2\left(\dfrac{\pi}{8}\right)$ about the vector $\vec{n} = \left(\cos\dfrac{\pi}{8},\sin\dfrac{\pi}{8},\cos\dfrac{\pi}{8}\right)$. We can see that this $\theta$ is an irrational multiple of $2\pi$. Hence suppose we wish to make $R_{\vec{n}}(\alpha)$ for some arbitrary $\alpha$ we can replicate to an arbitrary accuracy using repeated iteration $R_{\vec{n}}(\theta)$\\
 Lets say we wish to have it to some accuracy $\delta$ and $N$ is an integer larger than $2\pi/\delta$. Lets define a sequence $\theta_k = (k\theta)$mod $2\pi$. From pigeonhole principle we can see that there exists distinct $j,k \in{1,2,.....N}$ such that $|\theta_j - \theta_k| \leq 2\pi/N < \delta$ hence we can use $\theta_{l(j-k)}$ to attain any value in $[0, 2\pi)$ with accuracy of $\delta$.\\
-Now we can see that $HR_{\vec{n}}(\theta)H = R_{\vec{m}}(\theta)$ where $\vec{m} = \left(cos\dfrac{\pi}{8},-sin\dfrac{\pi}{8},cos\dfrac{\pi}{8}\right)$. Now if we recall eq. 3.2, we can see that all unitary operators can be represented as the following subject to a certain level of accuracy.
+Now we can see that $HR_{\vec{n}}(\theta)H = R_{\vec{m}}(\theta)$ where $\vec{m} = \left(\cos\dfrac{\pi}{8},-\sin\dfrac{\pi}{8},\cos\dfrac{\pi}{8}\right)$. Now if we recall eq. 3.2, we can see that all unitary operators can be represented as the following subject to a certain level of accuracy.
 \begin{equation}
 U = e^{i\alpha}{R_{\vec{n}}(\theta)}^{n_1}H{R_{\vec{n}}(\theta)}^{n_2}H{R_{\vec{n}}(\theta)}^{n_3}
 \end{equation}
@@ -499,12 +498,14 @@ Since $H$ is usually pretty difficult to remove the exponent of, we make approxi
 The algorithms functions like this\\
 \textbf{Inputs: }The initial state $\ket{\psi_0}$ along with the Hamiltonian $H = \sum_{k = 1}^{L}H_{k}$, the error range $\delta$ and time $t_f$ for which we have to find $\ket{\psi(t_f)}$\\
 \textbf{Outputs: } The state $\ket{\tilde{\psi(t_f)}}$ such that $|\bra{\tilde{\psi(t_f)}}|^2 < 1 - \delta$\\
-\textbf{Procedure: }\\
-\indent (1) Initialize state as $\ket{\tilde{\psi_0}} = \ket{\psi_0}$\\
-\indent (2) Iterative update $\ket{\psi_{j+1}} = U_{\Delta{t}}\ket{\psi_{j}}$\\
-\indent (3) $j = j+1$; goto (2) while $j\Delta{t} < t_f$
-\indent (4) $\ket{\tilde{\psi(t_f)}} = \ket{\tilde{\psi_j}}$ final result
-\textbf{Runtime: }This typically functions in $O(poly(1/\delta))$ operations.\\
+\textbf{Procedure: }
+\begin{enumerate}
+\item Initialize state as $\ket{\tilde{\psi_0}} = \ket{\psi_0}$.
+\item Iterative update $\ket{\psi_{j+1}} = U_{\Delta{t}}\ket{\psi_{j}}$.
+\item $j = j+1$; goto 2. while $j\Delta{t} < t_f$.
+\item $\ket{\tilde{\psi(t_f)}} = \ket{\tilde{\psi_j}}$ final result
+\end{enumerate}
+\textbf{Runtime: }This typically functions in $O(poly(1/\delta))$ operations.
 Here $U_{\Delta{t}}$ is a unitary which describes the approximate evolution over a time of $\Delta{t}$\\ 
 An interesting kind of Hamiltonian are Hamiltonians of form $H = {H_{1}}\otimes{H_{2}}\otimes{H_{3}}$ which is acting on a three qubit system such that $H_{1}$ acts on the first qubit and so on. Lets pick the example $H = {Z_{1}}\otimes{Z_{2}}\otimes{Z_{3}}$. The circuit for this would look something like this
 \begin{figure}[ht]
@@ -528,13 +529,13 @@ $$y_k = \dfrac{1}{\sqrt{N}}\sum_{j = 0}^{N}x_{j}e^{2\pi\iota{jk/N}}$$
 Now an important thing to note is that this happens to be a unitary transform which means that we can execute it in a quantum circuit thanks to universality.
 Now we can represent each vector in this space with $n$ qubits. Let each state be represented as $\ket{j_1,j_2,...,j_n}$. Let $0.j_1j_2..j_n$ represent the binary representation of the sum of fractions ${j_1}/{2} + .... + {j_n}/{2^n}$. We can see that the Fourier transform over this state can be written as
 \begin{equation}U_{QFT}\ket{j_1,j_2,...,j_n} = \dfrac{(\ket{0} + e^{2\pi\iota0.j_n}\ket{1})(\ket{0} + e^{2\pi\iota0.j_{n-1}j_{n}}\ket{1}).....(\ket{0} + e^{2\pi\iota0.j_{1}j_{2}...j_{n}}\ket{1})}{2^{n/2}}\end{equation}
-Now if we define a rotation matrix $R_k = \begin{bmatrix}1 & 0\\0 & e^{2\pi\iota/2^k}\end{bmatrix}$ we can create an efficient circuit for executing the Quantum Fourier transform like this
+Now if we define a rotation matrix $R_k = \begin{bmatrix}1 & 0\\0 & e^{2\pi\iota/2^k}\end{bmatrix}$ we can create an efficient circuit for executing the Quantum Fourier transform like this (see fig 4.1).
 \begin{figure}[ht]
     \centering
     \includegraphics[width = 0.7\textwidth]{images/QFT circuit.png}
     \caption{Circuit for QFT. Note that this does not include the swap gates for reversing order of output qubits and normalization}
 \end{figure}
-Using this we can do lots of things which classical computers would have taken exponential time for since classical computers would require $\Theta(2^{2n})$ complexity in number of operations $\theta{n^2}$ as seen from fig 4.1 and that is an exponential improvement. Here are some interesting things which can be done using the Fourier transform.
+Using this we can do lots of things which classical computers would have taken exponential time for since classical computers would require $\Theta(2^{2n})$ complexity in number of operations and quantum computers only require a $\Theta{(n^2)}$ as seen from fig 4.1 and that is an exponential improvement. Here are some interesting things which can be done using the Fourier transform.
 
 \subsection{Phase estimation}
 Suppose we have unitary operator $U$ with an eigen vector $\ket{u}$ with an eigenvalue $e^{2\pi\phi}$ where $\phi$ is unknown and we wish to estimate its value. We us two registers, one which has $t$ qubits and the other which is initialized in state $\ket{u}$. Now lets say that the binary representation of $\phi$ is $0.\phi_1\phi_2...\phi_t$ accurate to $t$ places after the radix point.\\
@@ -616,7 +617,7 @@ $$\approx \dfrac{1}{2^t\sqrt{r}}\sum_{l_2=0}^{r-1}\sum_{x_1=0}^{2^t-1}\sum_{x_2=
 \begin{equation}= \dfrac{1}{2^t\sqrt{r}}\sum_{l_2=0}^{r-1}\left[\sum_{x_1=0}^{2^t-1}e^{2\pi\iota(sl_2x_1)}\right]\left[\sum_{x_2=0}^{2^t-1}e^{2\pi\iota(l_2x_2)}\right]\ket{x_1}\ket{x_2}\ket{\hat{f}(sl_2,l_1)}\end{equation}
 We can see that applying the inverse Fourier transform and measuring the first two registers will give us $sl_2/r$ and $l_2/r$ from which we can deduce $s$ by using continued fractions algorithm.\\
 Note that $\ket{\hat{f}(l_1,l_2)} = \dfrac{1}{\sqrt{r}}\sum_{j=0}^{r-1}e^{-2\pi\iota{l_2j}/r}\ket{f(0,j)}$ which is the Fourier transform of $f(x_1,x_2)$. Note that $l_1,l_2$ must satisfy $\sum_{k=0}^{r-1}e^{2\pi\iota{k(l_1/s - l_2)}/r} = r$ else the amplitude of $f(l_1,l_2)$ would go to zero.\\
-Obtaining the value of $s$ from $sl_2/r$ and $l_2/r$ can be done in the following manner. First if we consider the case where $s$ and $r/gcd(l_2,r)$ are co prime we can simply see that the two fractions we will get by continued fractions algorithm say $s^{'}l_2^{'}/r_1^{'}$ and $l_2^{'}/r_2^{'}$ we can see that $s$ can be obtained since the numerator of first fraction will just be an integer multiple of the second and also their denominators will be the same. The problem arises when $s$ is not co prime with $r/gcd(l_2,r)$ in which situation we will see that $r_{1}^{'}$ will be a factor of $r_{2}^{'}$ so we can run the algorithm twice since probability that both the times the probability of obtaining the same values becomes very small so we can then take the lcm of the denominators of the different fractions and we have a good probability of obtaining $r$ from that is high since it would just require their numerators to be co prime and then from there we can obtain $s$ by multiplying know fractions by the value of $r$ and then seeing what integer multiple one is of the other.
+Obtaining the value of $s$ from $sl_2/r$ and $l_2/r$ can be done in the following manner. First if we consider the case where $s$ and $r/\gcd(l_2,r)$ are co prime we can simply see that the two fractions we will get by continued fractions algorithm say $s^{'}l_2^{'}/r_1^{'}$ and $l_2^{'}/r_2^{'}$ we can see that $s$ can be obtained since the numerator of first fraction will just be an integer multiple of the second and also their denominators will be the same. The problem arises when $s$ is not co prime with $r/\gcd(l_2,r)$ in which situation we will see that $r_{1}^{'}$ will be a factor of $r_{2}^{'}$ so we can run the algorithm twice since probability that both the times the probability of obtaining the same values becomes very small so we can then take the lcm of the denominators of the different fractions and we have a good probability of obtaining $r$ from that is high since it would just require their numerators to be co prime and then from there we can obtain $s$ by multiplying know fractions by the value of $r$ and then seeing what integer multiple one is of the other.
 
 
 \subsection{Hidden subgroup problem}
@@ -627,7 +628,7 @@ $$\dfrac{1}{|G|}\sum_{g\in{G}}\sum_{l=0}^{|G|-1}e^{2\pi\iota{lg}/|G|}\ket{g}\ket
 Now this looks very familiar doesn't it? For the $\ket{\hat{f}(l)}$ it will have zero amplitude if $l$ doesn't satisfy $\sum_{h\in{K}}e^{2\pi\iota{lh}/|G|} = |K|$ so now if we can find the $l$ values we can find a generating set for the hidden subgroup $K$ however this is not exactly an easy task since when doing our regular period finding or such tasks we arrange the fraction $l/|G|$ to be such that $l$ and $|G|$ do not have common factors but for some arbitrary $G$ this may not at all be necessary.\\
 There is a way however, since abelian groups are isomorphic to a product of cyclic groups of prime power order, that is $G = \mathbb{Z}_{p_1} \times \mathbb{Z}_{p_2} ....\times \mathbb{Z}_{p_m}$ where $\mathbb{Z}_{p_i}$ is a group over integers $\{0,1,...{p_i-1}\}$ with addition modulo over $p_i$ so we can rewrite our phase as
 $$e^{2\pi\iota{lg}/|G|} = \prod_{i=1}^{M}e^{2\pi\iota{{l_i}^{'}g_i}/{p_i}}$$
-And we can easily find $l_{i}^{'}$ from phase estimation and then solve the hidden subgroup problem. However finding the prime power order groups is a hard problem that is at least as hard as factoring but since we are working with a quantum computer, it can also be used for finding these prime power order groups in efficient time. It is possible to do so since each abelian group has a unique representation of this form and for an abelian group which is the set of integers this really would just boil down to factoring
+And we can easily find $l_{i}^{'}$ from phase estimation and then solve the hidden subgroup problem. However finding the prime power order groups is a hard problem that is at least as hard as factoring but since we are working with a quantum computer, it can also be used for finding these prime power order groups in efficient time. It is possible to do so since each abelian group has a unique representation of this form and for an abelian group which is the set of integers this really would just boil down to factoring.
 
 \subsection{Deutsch-Josza Algorithm and Simon's Algorithm}
 The Deutsch-Josza Algorithm is a fairly famous example of a hidden subgroup problem solving algorithm. The problem it solves goes like this, we are given a function $f(x)$ which takes in a $n$ bit string and outputs either 0 or 1. Now we are given the following as a fact that this function is either a constant function or is a balanced function i.e. it gives the outputs of 0 and 1 an equal number of times. Our goal is to find out whether it is balanced or constant.\\
@@ -635,7 +636,7 @@ On a classical computer this would take $2^{n-1}+1$ iterations to conclude howev
 Let the oracle be $U\ket{x}\ket{y} = \ket{x}\ket{y \otimes f(x)}$. We will have two registers one of $n$ qubits and the other of only one qubit. The first register is initialized at $\ket{0}$ and the other is at $\ket{1}$. 
 We now apply Hadamard to to both registers so we get this state $\dfrac{1}{\sqrt{2^{n+1}}}\sum_{x=0}^{2^n-1}\ket{x}(\ket{0}-\ket{1})$. We now apply the oracle on this state to get $\dfrac{1}{\sqrt{2^{n+1}}}\sum_{x=0}^{2^n-1}\ket{x}(\ket{f(x)}-\ket{1 \oplus f(x)}) = \dfrac{1}{\sqrt{2^{n+1}}}\sum_{x=0}^{2^n-1}(-1)^{f(x)}\ket{x}(\ket{0}-\ket{1})$\\
 We can now just ignore the second register and apply Hadamard on the first register again and we will get $$\frac{1}{2^n}\sum_{y=0}^{2^n-1}\left[\sum_{x=0}^{2^n-1}(-1)^{f(x)}(-1)^{x \cdot y} \right]\vert y\rangle$$
-We now perform a measurement on this register but now here's the thing, the probability of measuring the state $\ket{0}$ is 1 if $f(x)$ is constant but 0 if $f(x)$ is balanced so depending on whether we get the state $\ket{0}$ on measurement or not, we will find out the function.\\
+We now perform a measurement on this register but now here's the thing, the probability of measuring the state $\ket{0}$ is 1 if $f(x)$ is constant but 0 if $f(x)$ is balanced so depending on whether we get the state $\ket{0}$ on measurement or not, we will find out the function.\\\\
 Simon's algorithm is another such algorithm which solves the problem where we are given a blackbox for a function which is either a one-one function or is a two-one function which does mapping according to some hidden bit string $s$ such that if $f(x_1) = f(x_2)$ then $x_1 \oplus x_2 = s$. Let the domain of this function be over bit strings of $n$ bits then we would have to do $2^{n-1} + 1$ oracle calls on a classical computer but with a quantum computer we can do far better.\\
 Now we have our usual unitary $U\ket{x}\ket{y} = \ket{x}\ket{f(x) \oplus y}$ where $\ket{x}$ and $\ket{y}$ are of $n$ qubit registers. The first step is to initialize the whole state to $\ket{0}\ket{0}$ and then apply Hadamard on the first register and then apply the black box for the unitary to get $\dfrac{1}{\sqrt{2^n}}\sum_{x=0}^{2^n-1}\ket{x}\ket{f(x)}$. Now we measure the second register and in the case we have the two one function then we have the state $\dfrac{1}{\sqrt{2}}(\ket{x} + \ket{y})$ when we measure to get $\ket{f(x)}$ for the second register and $y = x \oplus s$. Now we will apply Hadamard again on the first register to get   $\dfrac{1}{\sqrt{2^{n+1}}} \sum_{z \in \{0,1\}^{n} } \left[  (-1)^{x \cdot z} + (-1)^{y \cdot z} \right]  \lvert z \rangle$. On measuring this state, the possible values of $z$ satisfy $x \cdot z = y \cdot z \mod 2$ which reduces to $s \cdot z = 0$ and if we have n distinct values for $z$ obtained we can find out $s$ by Gauss elimination so this can be run at about $n$ oracle calls which is a potential exponential speed up.
 
